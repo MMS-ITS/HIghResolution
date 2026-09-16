@@ -10,6 +10,35 @@ cp /your/photos/*.jpg input/
 .venv/bin/python upscale.py        # -> output/name_7680x5120.png
 ```
 
+## The 8K images in this repo
+
+All 14 property photos are in [`8k/`](8k) at a 7680px long edge.
+
+![contact sheet](docs/preview-contact-sheet.jpg)
+
+Detail at true 1:1 output pixels — note that resampling magnifies the sources'
+JPEG blocking, while the model resolves the roof ridges, hedge edge and car:
+
+![detail comparison](docs/preview-detail-1to1.jpg)
+
+The exact command used, run from the repo root:
+
+```bash
+.venv/bin/python upscale.py -i . -o output --method quality --max-passes 1
+```
+
+**`--max-passes 1` is the important part.** The sources are 1280px, so 8K is a
+6x stretch, and by default the tool would run two 4x passes to overshoot 8K
+before stepping back down. That costs about 40 min per image and comes out
+*worse*: A/B tested, one pass scored sharper (5.55 vs 3.12) because the second
+pass mostly amplifies WhatsApp JPEG artifacts rather than real detail. One pass
+to 5120px followed by Lanczos to 7680px took ~3 min per image.
+
+Rule of thumb: when the stretch you need is well under the next power of 4,
+cap the passes. Use `--dry-run` to see the pass count before committing.
+
+Previews regenerate with `.venv/bin/python scripts/make_previews.py`.
+
 ## How it works
 
 Upscaling happens in 4x AI steps until the image is at least the target size,
