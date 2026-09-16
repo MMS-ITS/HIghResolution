@@ -1,0 +1,22 @@
+# Model weights are downloaded via scripts/fetch_models.sh (~69MB)
+models/
+*.onnx
+
+# Virtualenv
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Images: keep the folders, not the contents
+input/*
+output/*
+!input/.gitkeep
+!output/.gitkeep
+
+# OS noise
+.DS_Store
+Thumbs.db
