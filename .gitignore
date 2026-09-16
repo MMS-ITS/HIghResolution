@@ -11,11 +11,17 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 
-# Images: keep the folders, not the contents
+# Working folders: keep the folders, not the contents.
+# (Upscaled deliverables live in 8k/ and ARE tracked.)
 input/*
 output/*
 !input/.gitkeep
 !output/.gitkeep
+
+# Scratch from comparison runs
+ab/
+originals/
+preview_sheet*.png
 
 # OS noise
 .DS_Store
