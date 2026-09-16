@@ -1,0 +1,28 @@
+# Model weights are downloaded via scripts/fetch_models.sh (~69MB)
+models/
+*.onnx
+
+# Virtualenv
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Working folders: keep the folders, not the contents.
+# (Upscaled deliverables live in 8k/ and ARE tracked.)
+input/*
+output/*
+!input/.gitkeep
+!output/.gitkeep
+
+# Scratch from comparison runs
+ab/
+originals/
+preview_sheet*.png
+
+# OS noise
+.DS_Store
+Thumbs.db
